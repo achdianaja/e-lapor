@@ -31,6 +31,8 @@
         <!-- Bootstrap Datepicker js -->
         <script src="{{asset("assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js")}}"></script>
 
+        <!--  Select2 Js -->
+        <script src="{{asset("assets/vendor/select2/js/select2.min.js")}}"></script>
         <!-- Datatables js -->
         <script src="{{asset("assets/vendor/datatables.net/js/jquery.dataTables.min.js")}}"></script>
         <script src="{{asset("assets/vendor/datatables.net-bs5/js/dataTables.bootstrap5.min.js")}}"></script>
@@ -45,12 +47,23 @@
         <script src="{{asset("assets/vendor/datatables.net-buttons/js/buttons.print.min.js")}}"></script>
         <script src="{{asset("assets/vendor/datatables.net-keytable/js/dataTables.keyTable.min.js")}}"></script>
         <script src="{{asset("assets/vendor/datatables.net-select/js/dataTables.select.min.js")}}"></script>
-
+        
         <!-- SimpleMDE js -->
         <script src="/assets/vendor/simplemde/simplemde.min.js"></script>
         <!-- SimpleMDE demo -->
         <script src="/assets/js/pages/demo.simplemde.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.js"></script>
+        
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.js"></script>
 
+        <script>
+            $(".select2").select2({
+                placeholder: "Select a state",
+                allowClear: true
+            });
+        </script>
+        
         <script>
             $(document).ready(function () {
                 $('.gambar-lampiran').click(function () {
@@ -69,16 +82,42 @@
 </script> --}}
 
         <script>
-            jQuery({
-                Counter: 0
-            }).animate({
+            jQuery({ Counter: 0 }).animate({
                 Counter: jQuery('.counter').text()
             }, {
-                duration: 10000,
+                duration: 1000,
                 easing: 'swing',
-                step: function () {
-                    jQuery('.counter').text(Math.ceil(this.Counter).toLocaleString('id'));
-                }
+                step: function() {
+                jQuery('.counter').text(Math.ceil(this.Counter).toLocaleString('id'));
+                }  
             });
+        </script>
+
+        <script>
+            function readURL(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+      $('#image').attr('src', e.target.result);
+    }
+
+    reader.readAsDataURL(input.files[0]);
+  }
+} 
+        </script>
+
+        <script>
+            const imageCheckboxInput = document.querySelector('.image-checkbox-input');
+const imageCheckbox = document.querySelector('.image-checkbox');
+
+imageCheckboxInput.addEventListener('change', () => {
+  if (imageCheckboxInput.checked) {
+    imageCheckbox.classList.add('checked');
+  } else {
+    imageCheckbox.classList.remove('checked');
+  }
+});
 
         </script>
+

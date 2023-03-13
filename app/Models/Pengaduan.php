@@ -25,6 +25,7 @@ class Pengaduan extends Model
     'lokasi_kejadian',
     'hide_identitas',
     'hide_laporan',
+    'id_categories',
     'foto',
     'status',
     'report_main_image',
@@ -45,5 +46,16 @@ class Pengaduan extends Model
     public function tanggapan()
     {
         return $this->hasOne(Tanggapan::class, 'id_pengaduan');
+    }
+
+    public function categories()
+    {
+        return $this->hasOne(Categories::class, 'id_pengaduan');
+    }
+
+    public function getCreatedAtAttribute()
+    {
+        return Carbon::parse($this->attributes['created_at'])
+        ->translatedFormat('H:i');
     }
 }

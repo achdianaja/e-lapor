@@ -13,7 +13,13 @@ class DashboardAdminController extends Controller
     {
         $masyarakat = Masyarakat::all()->count();
         $petugas = Petugas::where('level', 'petugas')->count();
+        $pengaduan = Pengaduan::orderBy('created_at', 'DESC')->simplePaginate(5);
+        $semua = Pengaduan::all()->count();
+        $proses = Pengaduan::where('status', 'proses')->count();
+        $selesai = Pengaduan::where('status', 'selesai')->count();
         // dd($petugas);
-        return view('contents.admin.index', compact('masyarakat', 'petugas'));
+        return view('contents.admin.index', compact('masyarakat', 'petugas', 'semua', 'proses', 'selesai', 'pengaduan'));
     }
+
+    
 }

@@ -7,6 +7,15 @@
     <div class="edit-profile">
         <div class="mt-3">
             <div class="card">
+                @if (session('success'))
+                <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                    <strong>Selamat !
+                    </strong>
+                    <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"
+                        data-bs-original-title="" title=""></button>
+                    {{ session('success') }}
+                </div>
+                @endif
                 <div class="card-header pb-0">
                     <h4 class="card-title mb-0">Pengaduan</h4>
                     <div class="card-options"><a class="card-options-collapse" href="#"
@@ -46,10 +55,9 @@
 
                             @foreach ($pengaduan->images as $item)
 
-                            <img src="/storage/{{ $item->image_path }}"
-                                alt="{{ 'Gambar '.$item->judul_laporan }}" class="img-fluid avatar-xl p-2 gambar-lampiran"
-                                data-bs-toggle="modal" data-bs-target="#imageModal"
-                                data-src="/storage/{{ $item->image_path}}">
+                            <img src="/storage/{{ $item->image_path }}" alt="{{ 'Gambar '.$item->judul_laporan }}"
+                                class="img-fluid avatar-xl p-2 gambar-lampiran" data-bs-toggle="modal"
+                                data-bs-target="#imageModal" data-src="/storage/{{ $item->image_path}}">
                             @endforeach
                             <!-- Modal image -->
 
@@ -70,7 +78,7 @@
 
                     <hr>
                     <div class="mb-3">
-                        <form action="/admin/tanggapan/createOrUpdate" method="POST">
+                        <form action="/admin/tanggapan/createOrUpdate" method="POST" class="comment-area-box">
                             @csrf
                             <input type="hidden" name="id_pengaduan" value="{{ $pengaduan->id_pengaduan }}">
                             <div class="pb-0">
@@ -107,24 +115,15 @@
                                     <div class="col-md-12">
                                         <div>
                                             <label class="form-label">Tanggapan</label>
-                                            <textarea class="form-control" name="tanggapan" rows="5"
+                                            <textarea class="form-control " name="tanggapan" rows="5"
                                                 placeholder="Beri tanggapan"
                                                 id="simplemde1">{{ $tanggapan->tanggapan ?? '' }}</textarea>
                                         </div>
                                     </div>
-                                    @if (session('success'))
-                                    <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                                        <strong>Selamat !
-                                        </strong>
-                                        <button class="btn-close" type="button" data-bs-dismiss="alert"
-                                            aria-label="Close" data-bs-original-title="" title=""></button>
-                                        {{ session('success') }}
-                                    </div>
-                                    @endif
                                 </div>
                             </div>
-                            <div class="">
-                                <button class="btn btn-primary form-control text-white" type="submit">Kirim</button>
+                            <div class="float-end">
+                                <button class=" btn btn-sm btn-success" type="submit"><i class='uil uil-message me-1'></i>Kirim</button>
                             </div>
                         </form>
                     </div>

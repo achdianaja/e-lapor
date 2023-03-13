@@ -4,479 +4,183 @@
 
 @section('adminContent')
 
-    <div class="content">
+<div class="content">
 
-        <!-- Start Content-->
-        <div class="container-fluid">
+    <!-- Start Content-->
+    <div class="container-fluid">
 
-            <!-- start page title -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="page-title-box">
-                        <div class="page-title-right">
-                            <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="javascript: void(0);">Hyper</a></li>
-                                <li class="breadcrumb-item"><a href="javascript: void(0);">CRM</a></li>
-                                <li class="breadcrumb-item active">CRM</li>
-                            </ol>
-                        </div>
-                        <h4 class="page-title">CRM</h4>
-                    </div>
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <h4 class="page-title">Dashboard E - lapor</h4>
                 </div>
             </div>
-            <!-- end page title -->
+        </div>
+        <!-- end page title -->
 
-            <div class="row">
-                <div class="col-md-6 col-xl-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row align-items-center">
-                                <div class="col-6">
-                                    <h5 class="text-muted fw-normal mt-0 text-truncate" title="Masyarakat">
-                                        Masyarakat</h5>
-                                    <h3 class="my-2 py-1">{{ $masyarakat }}</h3>
-                                    <p class="mb-0 text-muted">
-                                        <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i>
-                                            3.27%</span>
-                                    </p>
+        <div class="row">
+            @if (Auth::guard('admin')->user()->level == 'petugas')
+            <div class="col-md-4 col-xl-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-6">
+                                <h5 class="text-muted fw-normal mt-0 " title="Masyarakat">
+                                    Semua Pengaduan</h5>
+                                <h3 class="my-2 py-1">{{ $semua }}</h3>
+                            </div>
+                            <div class="col-6">
+                                <div class="text-end">
+                                    <div id="campaign-sent-chart" data-colors="#727cf5"></div>
                                 </div>
-                                <div class="col-6">
-                                    <div class="text-end">
-                                        <div id="campaign-sent-chart" data-colors="#727cf5"></div>
-                                    </div>
-                                </div>
-                            </div> <!-- end row-->
-                        </div> <!-- end card-body -->
-                    </div> <!-- end card -->
-                </div> <!-- end col -->
+                            </div>
+                        </div> <!-- end row-->
+                    </div> <!-- end card-body -->
+                </div> <!-- end card -->
+            </div> <!-- end col -->
 
-                <div class="col-md-6 col-xl-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row align-items-center">
-                                <div class="col-6">
-                                    <h5 class="text-muted fw-normal mt-0 text-truncate" title="New Leads">Petugas</h5>
-                                    <h3 class="my-2 py-1">{{ $petugas }}</h3>
-                                    <p class="mb-0 text-muted">
-                                        <span class="text-danger me-2"><i class="mdi mdi-arrow-down-bold"></i>
-                                            5.38%</span>
-                                    </p>
-                                </div>
-                                <div class="col-6">
-                                    <div class="text-end">
-                                        <div id="new-leads-chart" data-colors="#0acf97"></div>
-                                    </div>
-                                </div>
-                            </div> <!-- end row-->
-                        </div> <!-- end card-body -->
-                    </div> <!-- end card -->
-                </div> <!-- end col -->
+            <div class="col-md-4 col-xl-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-6">
+                                <h5 class="text-muted fw-normal mt-0 " title="New Leads">Pengaduan Proses</h5>
+                                <h3 class="my-2 py-1">{{ $proses }}</h3>
 
-                <div class="col-md-6 col-xl-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row align-items-center">
-                                <div class="col-6">
-                                    <h5 class="text-muted fw-normal mt-0 text-truncate" title="Deals">Deals</h5>
-                                    <h3 class="my-2 py-1">861</h3>
-                                    <p class="mb-0 text-muted">
-                                        <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i>
-                                            4.87%</span>
-                                    </p>
+                            </div>
+                            <div class="col-6">
+                                <div class="text-end">
+                                    <div id="new-leads-chart" data-colors="#0acf97"></div>
                                 </div>
-                                <div class="col-6">
-                                    <div class="text-end">
-                                        <div id="deals-chart" data-colors="#727cf5"></div>
-                                    </div>
-                                </div>
-                            </div> <!-- end row-->
-                        </div> <!-- end card-body -->
-                    </div> <!-- end card -->
-                </div> <!-- end col -->
+                            </div>
+                        </div> <!-- end row-->
+                    </div> <!-- end card-body -->
+                </div> <!-- end card -->
+            </div> <!-- end col -->
 
-                <div class="col-md-6 col-xl-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row align-items-center">
-                                <div class="col-6">
-                                    <h5 class="text-muted fw-normal mt-0 text-truncate" title="Booked Revenue">
-                                        Booked Revenue</h5>
-                                    <h3 class="my-2 py-1">$253k</h3>
-                                    <p class="mb-0 text-muted">
-                                        <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i>
-                                            11.7%</span>
-                                    </p>
+            <div class="col-md-4 col-xl-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-6">
+                                <h5 class="text-muted fw-normal mt-0 " title="New Leads">Pengaduan Selesai</h5>
+                                <h3 class="my-2 py-1">{{ $selesai }}</h3>
+
+                            </div>
+                            <div class="col-6">
+                                <div class="text-end">
+                                    <div id="new-leads-chart" data-colors="#0acf97"></div>
                                 </div>
-                                <div class="col-6">
-                                    <div class="text-end">
-                                        <div id="booked-revenue-chart" data-colors="#0acf97"></div>
-                                    </div>
-                                </div>
-                            </div> <!-- end row-->
-                        </div> <!-- end card-body -->
-                    </div> <!-- end card -->
-                </div> <!-- end col -->
+                            </div>
+                        </div> <!-- end row-->
+                    </div> <!-- end card-body -->
+                </div> <!-- end card -->
+            </div> <!-- end col -->
+            @else
+            <div class="col-md-4 col-xl-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-12">
+                                <h5 class="text-muted fw-normal mt-0 " title="Masyarakat">
+                                        <i class="mdi mdi-account-group"></i>
+                                    Jumlah masyarakat</h5>
+                                <h3 class="my-2 py-1">{{ $masyarakat }}</h3>
+                            </div>
+                        </div> <!-- end row-->
+                    </div> <!-- end card-body -->
+                </div> <!-- end card -->
+            </div> <!-- end col -->
+
+            <div class="col-md-4 col-xl-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-12">
+                                <h5 class="text-muted fw-normal mt-0 " title="Petugas">
+                                    <i class="mdi mdi-account"></i>
+                                    Jumlah petugas</h5>
+                                <h3 class="my-2 py-1">{{ $petugas }}</h3>
+                            </div>
+                        </div> <!-- end row-->
+                    </div> <!-- end card-body -->
+                </div> <!-- end card -->
+            </div> <!-- end col -->
+            <div class="col-md-4 col-xl-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-12">
+                                <h5 class="text-muted fw-normal mt-0 " title="Total pengaduan">
+                                    <i class="mdi mdi-file-document"></i>
+                                    total pengaduan</h5>
+                                <h3 class="my-2 py-1">{{ $semua }}</h3>
+                            </div>
+                        </div> <!-- end row-->
+                    </div> <!-- end card-body -->
+                </div> <!-- end card -->
+            </div> <!-- end col -->
+            @endif
+        </div>
+        <!-- end row -->
+        
+            <div class="card mt-3">
+                <div class="card-header">
+                    <h3>Pengaduan terbaru</h3>
+                </div>
+                <div class="card-body">
+                    {{-- <a class="btn btn-success mb-2" href="/admin/tambahpetugas">Tambah Data</a> --}}
+                    <div class="tab-content">
+                        <div class="tab-pane show active" id="buttons-table-preview">
+                            <table id="scroll-vertical-datatable" class="table dt-responsive nowrap w-100">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">No</th>
+                                        <th scope="col">Tanggal pengaduan</th>
+                                        <th scope="col">Nama pengirim</th>
+                                        {{-- <th scope="col">Nama Pelapor</th> --}}
+                                        <th scope="col">Isi Laporan</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Opsi</th>
+
+                                    </tr>
+                                </thead>
+
+
+                                <tbody>
+                                    @foreach ($pengaduan as $p)
+                                    <tr>
+                                        <th scope="row">{{ $loop->iteration }}</th>
+                                        <td>{{ $p->tgl_pengaduan->format('d-M-Y') }}</td>
+                                        <td>{{ $p->user->nama }}</td>
+                                        <td>{{ Str::limit($p->isi_laporan, 40) }}</td>
+                                        <td>
+                                            @if ($p->status == '0')
+                                            <span class="badge bg-danger text-white">Pending</span>
+                                            @elseif ($p->status == 'proses')
+                                            <span class="badge bg-warning">Proses</span>
+                                            @else
+                                            <span class="badge bg-success">Selesai</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-primary mb-3"
+                                                href="{{ route('petugas.showLaporan') }}">lihat</a>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
             </div>
-            <!-- end row -->
+        <!-- end row-->
 
-            <div class="row">
-                <div class="col-lg-5">
-                    <div class="card">
-                        <div class="card-header d-flex justify-content-between align-items-center">
-                            <h4 class="header-title">Campaigns</h4>
-                            <div class="dropdown">
-                                <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <i class="mdi mdi-dots-vertical"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-end">
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">Today</a>
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">Yesterday</a>
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">Last Week</a>
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">Last Month</a>
-                                </div>
-                            </div>
-                        </div>
+    </div> <!-- container -->
 
-                        <div class="card-body pt-0">
-                            <div id="dash-campaigns-chart" class="apex-charts" data-colors="#ffbc00,#727cf5,#0acf97">
-                            </div>
-
-                            <div class="row text-center mt-3">
-                                <div class="col-sm-4">
-                                    <i
-                                        class="mdi mdi-send widget-icon rounded-circle bg-warning-lighten text-warning"></i>
-                                    <h3 class="fw-normal mt-3">
-                                        <span>6,510</span>
-                                    </h3>
-                                    <p class="text-muted mb-0 mb-2"><i
-                                            class="mdi mdi-checkbox-blank-circle text-warning"></i> Total Sent
-                                    </p>
-                                </div>
-                                <div class="col-sm-4">
-                                    <i
-                                        class="mdi mdi-flag-variant widget-icon rounded-circle bg-primary-lighten text-primary"></i>
-                                    <h3 class="fw-normal mt-3">
-                                        <span>3,487</span>
-                                    </h3>
-                                    <p class="text-muted mb-0 mb-2"><i
-                                            class="mdi mdi-checkbox-blank-circle text-primary"></i> Reached</p>
-                                </div>
-                                <div class="col-sm-4">
-                                    <i
-                                        class="mdi mdi-email-open widget-icon rounded-circle bg-success-lighten text-success"></i>
-                                    <h3 class="fw-normal mt-3">
-                                        <span>1,568</span>
-                                    </h3>
-                                    <p class="text-muted mb-0 mb-2"><i
-                                            class="mdi mdi-checkbox-blank-circle text-success"></i> Opened</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end card body-->
-                    </div>
-                    <!-- end card -->
-                </div>
-                <!-- end col-->
-
-                <div class="col-lg-7">
-                    <div class="card">
-                        <div class="card-header d-flex justify-content-between align-items-center">
-                            <h4 class="header-title">Revenue</h4>
-                            <div>
-                                <button type="button" class="btn btn-soft-secondary btn-sm">
-                                    ALL
-                                </button>
-                                <button type="button" class="btn btn-soft-primary btn-sm">
-                                    1M
-                                </button>
-                                <button type="button" class="btn btn-soft-secondary btn-sm">
-                                    6M
-                                </button>
-                                <button type="button" class="btn btn-soft-secondary btn-sm">
-                                    1Y
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="card-body pt-0">
-                            <div class="chart-content-bg">
-                                <div class="row text-center">
-                                    <div class="col-sm-6">
-                                        <p class="text-muted mb-0 mt-3">Current Month</p>
-                                        <h2 class="fw-normal mb-3">
-                                            <span>$42,025</span>
-                                        </h2>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <p class="text-muted mb-0 mt-3">Previous Month</p>
-                                        <h2 class="fw-normal mb-3">
-                                            <span>$74,651</span>
-                                        </h2>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div dir="ltr">
-                                <div id="dash-revenue-chart" class="apex-charts" data-colors="#0acf97,#fa5c7c">
-                                </div>
-                            </div>
-
-                        </div>
-                        <!-- end card body-->
-                    </div>
-                    <!-- end card -->
-                </div>
-                <!-- end col-->
-            </div>
-            <!-- end row-->
-
-
-            <div class="row">
-                <div class="col-xl-4 col-lg-12">
-                    <div class="card">
-                        <div class="card-header d-flex justify-content-between align-items-center">
-                            <h4 class="header-title">Top Performing</h4>
-                            <div class="dropdown">
-                                <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <i class="mdi mdi-dots-vertical"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-end">
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">Settings</a>
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card-body pt-0">
-                            <div class="table-responsive">
-                                <table class="table table-striped table-sm table-nowrap table-centered mb-0">
-                                    <thead>
-                                        <tr>
-                                            <th>User</th>
-                                            <th>Leads</th>
-                                            <th>Deals</th>
-                                            <th>Tasks</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <h5 class="font-15 mb-1 fw-normal">Jeremy Young</h5>
-                                                <span class="text-muted font-13">Senior Sales Executive</span>
-                                            </td>
-                                            <td>187</td>
-                                            <td>154</td>
-                                            <td>49</td>
-                                            <td class="table-action">
-                                                <a href="javascript: void(0);" class="action-icon"> <i
-                                                        class="mdi mdi-eye"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <h5 class="font-15 mb-1 fw-normal">Thomas Krueger</h5>
-                                                <span class="text-muted font-13">Senior Sales Executive</span>
-                                            </td>
-                                            <td>235</td>
-                                            <td>127</td>
-                                            <td>83</td>
-                                            <td class="table-action">
-                                                <a href="javascript: void(0);" class="action-icon"> <i
-                                                        class="mdi mdi-eye"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <h5 class="font-15 mb-1 fw-normal">Pete Burdine</h5>
-                                                <span class="text-muted font-13">Senior Sales Executive</span>
-                                            </td>
-                                            <td>365</td>
-                                            <td>148</td>
-                                            <td>62</td>
-                                            <td class="table-action">
-                                                <a href="javascript: void(0);" class="action-icon"> <i
-                                                        class="mdi mdi-eye"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <h5 class="font-15 mb-1 fw-normal">Mary Nelson</h5>
-                                                <span class="text-muted font-13">Senior Sales Executive</span>
-                                            </td>
-                                            <td>753</td>
-                                            <td>159</td>
-                                            <td>258</td>
-                                            <td class="table-action">
-                                                <a href="javascript: void(0);" class="action-icon"> <i
-                                                        class="mdi mdi-eye"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <h5 class="font-15 mb-1 fw-normal">Kevin Grove</h5>
-                                                <span class="text-muted font-13">Senior Sales Executive</span>
-                                            </td>
-                                            <td>458</td>
-                                            <td>126</td>
-                                            <td>73</td>
-                                            <td class="table-action">
-                                                <a href="javascript: void(0);" class="action-icon"> <i
-                                                        class="mdi mdi-eye"></i></a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div> <!-- end table-responsive-->
-
-                        </div> <!-- end card-body-->
-                    </div> <!-- end card-->
-                </div>
-                <!-- end col-->
-
-                <div class="col-xl-4 col-lg-6">
-                    <div class="card">
-                        <div class="card-header d-flex justify-content-between align-items-center">
-                            <h4 class="header-title">Recent Leads</h4>
-                            <div class="dropdown">
-                                <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <i class="mdi mdi-dots-vertical"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-end">
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">Settings</a>
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card-body pt-2">
-                            <div class="d-flex align-items-start">
-                                <img class="me-3 rounded-circle" src="/assets/images/users/avatar-2.jpg" width="40"
-                                    alt="Generic placeholder image">
-                                <div class="w-100 overflow-hidden">
-                                    <span class="badge badge-warning-lighten float-end">Cold lead</span>
-                                    <h5 class="mt-0 mb-1">Risa Pearson</h5>
-                                    <span class="font-13">richard.john@mail.com</span>
-                                </div>
-                            </div>
-
-                            <div class="d-flex align-items-start mt-3">
-                                <img class="me-3 rounded-circle" src="/assets/images/users/avatar-3.jpg" width="40"
-                                    alt="Generic placeholder image">
-                                <div class="w-100 overflow-hidden">
-                                    <span class="badge badge-danger-lighten float-end">Lost lead</span>
-                                    <h5 class="mt-0 mb-1">Margaret D. Evans</h5>
-                                    <span class="font-13">margaret.evans@rhyta.com</span>
-                                </div>
-                            </div>
-
-                            <div class="d-flex align-items-start mt-3">
-                                <img class="me-3 rounded-circle" src="/assets/images/users/avatar-4.jpg" width="40"
-                                    alt="Generic placeholder image">
-                                <div class="w-100 overflow-hidden">
-                                    <span class="badge badge-success-lighten float-end">Won lead</span>
-                                    <h5 class="mt-0 mb-1">Bryan J. Luellen</h5>
-                                    <span class="font-13">bryuellen@dayrep.com</span>
-                                </div>
-                            </div>
-
-                            <div class="d-flex align-items-start mt-3">
-                                <img class="me-3 rounded-circle" src="/assets/images/users/avatar-5.jpg" width="40"
-                                    alt="Generic placeholder image">
-                                <div class="w-100 overflow-hidden">
-                                    <span class="badge badge-warning-lighten float-end">Cold lead</span>
-                                    <h5 class="mt-0 mb-1">Kathryn S. Collier</h5>
-                                    <span class="font-13">collier@jourrapide.com</span>
-                                </div>
-                            </div>
-
-                            <div class="d-flex align-items-start mt-3">
-                                <img class="me-3 rounded-circle" src="/assets/images/users/avatar-1.jpg" width="40"
-                                    alt="Generic placeholder image">
-                                <div class="w-100 overflow-hidden">
-                                    <span class="badge badge-warning-lighten float-end">Cold lead</span>
-                                    <h5 class="mt-0 mb-1">Timothy Kauper</h5>
-                                    <span class="font-13">thykauper@rhyta.com</span>
-                                </div>
-                            </div>
-
-                            <div class="d-flex align-items-start mt-3">
-                                <img class="me-3 rounded-circle" src="/assets/images/users/avatar-6.jpg" width="40"
-                                    alt="Generic placeholder image">
-                                <div class="w-100 overflow-hidden">
-                                    <span class="badge badge-success-lighten float-end">Won lead</span>
-                                    <h5 class="mt-0 mb-1">Zara Raws</h5>
-                                    <span class="font-13">austin@dayrep.com</span>
-                                </div>
-                            </div>
-
-                        </div>
-                        <!-- end card-body -->
-                    </div>
-                    <!-- end card-->
-                </div>
-                <!-- end col -->
-
-                <div class="col-xl-4 col-lg-6">
-                    <div class="card cta-box bg-primary text-white">
-                        <div class="card-body">
-                            <div class="d-flex align-items-start align-items-center">
-                                <div class="w-100 overflow-hidden">
-                                    <h2 class="mt-0"><i class="mdi mdi-bullhorn-outline"></i>&nbsp;</h2>
-                                    <h3 class="m-0 fw-normal cta-box-title">Enhance your <b>Campaign</b> for
-                                        better outreach <i class="mdi mdi-arrow-right"></i></h3>
-                                </div>
-                                <img class="ms-3" src="/assets/images/svg/email-campaign.svg" width="120"
-                                    alt="Generic placeholder image">
-                            </div>
-                        </div>
-                        <!-- end card-body -->
-                    </div>
-                    <!-- end card-->
-
-                    <!-- Todo-->
-                    <div class="card">
-                        <div class="card-header d-flex justify-content-between align-items-center">
-                            <h4 class="header-title">Todo</h4>
-                            <div class="dropdown float-end">
-                                <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <i class="mdi mdi-dots-vertical"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-end">
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">Settings</a>
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="todoapp mt-n2">
-                            <div class="card-body py-0 mb-2" data-simplebar style="max-height: 243px">
-                                <ul class="list-group list-group-flush todo-list" id="todo-list"></ul>
-                            </div>
-                        </div> <!-- end .todoapp-->
-                    </div> <!-- end card-->
-
-                </div>
-                <!-- end col -->
-            </div>
-            <!-- end row-->
-
-        </div> <!-- container -->
-
-    </div>
-    <!-- content -->
+</div>
+<!-- content -->
 @endsection

@@ -1,7 +1,7 @@
 @extends('layouts.admin.master')
 
 
-@section('content')
+@section('adminContent')
     
 <!-- Container-fluid starts-->
 <div class="container-fluid">

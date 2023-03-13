@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('tgl_lahir')->nullable();
             $table->string('gender');
             $table->string('foto')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

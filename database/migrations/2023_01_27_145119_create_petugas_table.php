@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('telp',13);
             $table->enum('level',['admin','petugas']);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -19,8 +19,9 @@ return new class extends Migration
             $table->char('nik',16);
             $table->string('judul_laporan');
             $table->text('isi_laporan');
+            $table->unsignedBigInteger('id_categories');
             // $table->string('foto');
-            $table->string('report_main_image');
+            $table->string('report_main_image')->nullable();
             $table->string('lokasi_kejadian')->nullable();
             $table->enum('status', ['0','proses','selesai']);
             $table->string('hide_identitas')->default('1');
@@ -28,6 +29,8 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('nik')->references('nik')->on('masyarakat');
+            
+            // $table->foreign('id_categories')->references('id')->on('categories');
         });
     }
 

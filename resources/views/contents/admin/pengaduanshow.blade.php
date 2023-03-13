@@ -22,15 +22,15 @@
 
 <div class="container">
 
-    <div class="card">
+    <div class="card mt-3">
         <div class="card-header">
-            <h2>Pengaduan</h2>
+            <h3>Pengaduan</h3>
         </div>
         <div class="card-body">
             {{-- <a class="btn btn-success mb-2" href="/admin/tambahpetugas">Tambah Data</a> --}}
             <div class="tab-content">
                 <div class="tab-pane show active" id="buttons-table-preview">
-                    <table id="datatable-buttons" class="table table-striped nowrap w-100">
+                    <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
                         <thead>
                             <tr>
                                 <th scope="col">No</th>

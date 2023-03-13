@@ -79,49 +79,45 @@
                                     <div class="mb-3">
                                         <label for="nik" class="form-label">NIK</label>
                                         <input class="form-control  @error('nik') is-invalid @enderror" type="text"
-                                            id="nik" placeholder="Nomor Induk Kependudukan" required name="nik" value="{{ old('nik') }}">
+                                            id="nik" placeholder="Nomor Induk Kependudukan"  data-toggle="input-mask" data-mask-format="0000000000000000" name="nik" value="{{ old('nik') }}">
                                         @error('nik')
-                                        <div class="invalid-feedback position-absolute start-0 top-100">
-                                            
-                                            Mohon NIK dengan benar!
-                                        </div>
+                                        <small class="invalid-feedback">
+                                            {{ $message }}
+                                        </small>
                                         @enderror
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="nama" class="form-label">Nama</label>
                                         <input class="form-control @error('nama') is-invalid @enderror" type="text"
-                                            id="nama" required placeholder="Nama Lengkap" name="nama" value="{{ old('nama') }}">
+                                            id="nama" placeholder="Nama Lengkap" name="nama" value="{{ old('nama') }}">
                                         @error('nama')
-                                        <div class="invalid-feedback position-absolute start-0 top-100">
-                                            
-                                            Mohon Masukan Nama
-                                        </div>
+                                        <small class="invalid-feedback">
+                                            {{ $message }}
+                                        </small>
                                         @enderror
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="username" class="form-label">Username</label>
                                         <input class="form-control  @error('username') is-invalid @enderror" type="text"
-                                            id="username" required placeholder="Ketikan username" name="username" value="{{ old('username') }}">
+                                            id="username" placeholder="Ketikan username" name="username" value="{{ old('username') }}">
                                         @error('username')
-                                        <div class="invalid-feedback position-absolute start-0 top-100">
-                                            
-                                            Mohon Masukan Username
-                                        </div>
+                                        <small class="invalid-feedback">
+                                            {{ $message }}
+                                        </small>
                                         @enderror
                                     </div>
 
 
                                     <div class="mb-3">
                                         <label for="username" class="form-label">Email</label>
-                                        <input class="form-control  @error('email') is-invalid @enderror" type="email"
-                                            id="username" required placeholder="Ketikan Email" name="email" {{ old('email') }}>
+                                        <input class="form-control  @error('email') is-invalid @enderror" 
+                                            id="username" placeholder="Ketikan Email" name="email" {{ old('email') }}>
                                         @error('email')
-                                        <div class="invalid-feedback position-absolute start-0 top-100">
-                                            
-                                            Mohon Masukan Username
-                                        </div>
+                                        <small class="invalid-feedback">
+                                            {{ $message }}
+                                        </small>
                                         @enderror
                                     </div>
                                 </div>
@@ -129,30 +125,29 @@
 
                                     <div class="mb-3">
                                         <label for="telp" class="form-label">No. Tlp</label>
-                                        <input class="form-control  @error('tlp') is-invalid @enderror" type="text"
-                                            id="telp" required placeholder="Ketikan Nomor Telepon" name="telp"
-                                            data-toggle="input-mask" data-mask-format="0000-0000-00000" value="{{ old('telp') }}">
+                                        <input class="form-control  @error('telp') is-invalid @enderror" type="text"
+                                            id="telp" placeholder="Ketikan Nomor Telepon" name="telp"
+                                            data-toggle="input-mask" data-mask-format="0000000000000" value="{{ old('telp') }}">
                                         @error('telp')
-                                        <div class="invalid-feedback position-absolute start-0 top-100">
-                                            
-                                            Mohon Masukan no tlp
-                                        </div>
+                                        <small class="invalid-feedback">
+                                            {{ $message }}
+                                        </small>
                                         @enderror
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="password" class="form-label">Password</label>
                                         <div class="input-group input-group-merge">
-                                            <input type="password" id="password" class="form-control"
+                                            <input type="password" id="password" class="@error('password') is-invalid @enderror form-control"
                                                 placeholder="Ketikan password" name="password">
                                             <div class="input-group-text" data-password="false">
                                                 <span class="password-eye"></span>
                                             </div>
                                             @error('password')
-                                            <div class="invalid-feedback position-absolute start-0 top-100">
-                                                
-                                                Mohon Masukan Password
-                                            </div>
+                                            <small class="invalid-feedback">
+                                                {{ $message }}
+                                                {{-- Mohon Masukan Password --}}
+                                            </small>
                                             @enderror
                                         </div>
                                     </div>
@@ -160,42 +155,38 @@
                                     <div class="mb-3">
                                         <label for="password" class="form-label">konfirmasi password</label>
                                         <div class="input-group input-group-merge">
-                                            <input type="password" id="password" class="form-control"
+                                            <input type="password" id="password" class="@error('password') is-invalid @enderror form-control"
                                                 placeholder="Konfirmasi password" name="password_confirmation">
                                             <div class="input-group-text" data-password="false">
                                                 <span class="password-eye"></span>
                                             </div>
-                                            @error('password_confirmation')
-                                            <div class="invalid-feedback position-absolute start-0 top-100">
-                                                
-                                                Konfirmasi password dengan benar
-                                            </div>
+                                            @error('password')
+                                            <small class="invalid-feedback">
+                                                {{ $message }}
+                                            </small>
                                             @enderror
                                         </div>
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="gender" class="form-label">Jenis kelamin</label>
-                                        <select class="form-select mb-3" id="gender" name="gender">
-                                            <option selected>Pilih jenis kelamin</option>
+                                        <select class="form-select @error('gender') is-invalid @enderror" id="gender" name="gender">
+                                            <option selected disabled>Pilih jenis kelamin</option>
                                             <option value="laki_laki">Laki-laki</option>
                                             <option value="perempuan">Perempuan</option>
-                                            <option value="1">Rahasia</option>
                                         </select>
-                                        @error('geder')
-                                        <div class="invalid-feedback position-absolute start-0 top-100">
-                                            
-                                            Pilih gender
-                                        </div>
+                                        @error('gender')
+                                        <small class="invalid-feedback">
+                                            {{ $message }}
+                                        </small>
                                         @enderror
                                     </div>
                                 </div>
 
                                 <div class="mb-3">
                                     <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="checkbox-signup" required>
-                                        <label class="form-check-label" for="checkbox-signup">Saya menyetujui <a
-                                                href="#" class="text-muted">Terms and Conditions</a></label>
+                                        <input type="checkbox" class="form-check-input" id="checkbox-signup">
+                                        <label class="form-check-label" for="checkbox-signup">Saya menyetujui peryaratanya</label>
                                     </div>
                                 </div>
 
@@ -210,7 +201,8 @@
 
                     <div class="row mt-3">
                         <div class="col-12 text-center">
-                            <p class="text-muted">Already have account? <a href="{{ route('admin.formLogin') }}"
+                            
+                            <p class="text-muted">Sudah punya akun? <a href="{{ route('admin.formLogin') }}"
                                     class="text-muted ms-1"><b>Log
                                         In</b></a></p>
                         </div> <!-- end col-->
@@ -226,10 +218,10 @@
     <!-- end page -->
 
     <footer class="footer footer-alt">
-        2018 - <script>
+        2023 - <script>
             document.write(new Date().getFullYear())
 
-        </script> © Hyper - Coderthemes.com
+        </script> © achdian - E -  LAPOR
     </footer>
 
     <!-- Vendor js -->

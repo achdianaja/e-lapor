@@ -1,5 +1,5 @@
 <!-- NAVBAR START -->
-<nav class="navbar navbar-expand-lg py-lg-3 navbar-dark">
+<nav class="navbar navbar-expand-lg  navbar-dark bg-primary">
     <div class="container">
 
         <!-- logo -->
@@ -21,20 +21,11 @@
                     <a class="nav-link" href="/dashboard">Laporan</a>
                 </li>
                 <li class="nav-item mx-lg-1">
-                    <a class="nav-link" href="#">Pengaduan</a>
+                    <a class="nav-link" href="/pengaduan">Pengaduan</a>
                 </li>
-                <li class="nav-item mx-lg-1">
+                {{-- <li class="nav-item mx-lg-1">
                     <a class="nav-link" href="#">Pricing</a>
-                </li>
-                <li class="nav-item mx-lg-1">
-                    <a class="nav-link" href="#">FAQs</a>
-                </li>
-                <li class="nav-item mx-lg-1">
-                    <a class="nav-link" href="#">Clients</a>
-                </li>
-                <li class="nav-item mx-lg-1">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
+                </li> --}}
             </ul>
 
             <!-- right menu -->

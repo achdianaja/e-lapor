@@ -1,7 +1,7 @@
 @extends('layouts.admin.master')
 
 
-@section('title','Petugas')
+@section('title','Kategori')
 
 @section('adminContent')
 
@@ -14,10 +14,10 @@
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard.index') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Petugas</li>
+                            <li class="breadcrumb-item active">Kategori</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">Data petugas</h4>
+                    <h4 class="page-title">Data Kategori</h4>
                 </div>
             </div>
         </div>
@@ -39,12 +39,46 @@
         <div class="card-header">
             <div class=" float-end">
                 <!-- item-->
-                <a href="/admin/trash" class="btn btn-sm btn-danger"><i class="mdi mdi-delete me-1"></i>Trash</a>
+                {{-- <a href="/admin/trash" class="btn btn-sm btn-danger"><i class="mdi mdi-delete me-1"></i>Trash</a> --}}
                 <!-- item-->
-                <a href="/admin/tambahpetugas" class="btn btn-sm btn-success"><i class="mdi mdi-plus-circle-outline me-1"></i>Add
-                    Petugas / Admin</a>
+                {{-- <a href="/admin/tambahpetugas" class="btn btn-sm btn-success"> --}}
+                <!-- Login modal -->
+                <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#login-modal">
+                    <i class="mdi mdi-plus-circle-outline me-1"></i>Add
+                    kategori</a>
+                </button>
+                <div id="login-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div class="text-center mt-2 mb-4">
+                                    <a href="index.html" class="text-success">
+                                        <span><img src="assets/images/logo-dark.png" alt="" height="18"></span>
+                                    </a>
+                                </div>
+
+                                <form action="/admin/kategori/add" class="" method="post">
+                                    @csrf
+                                    <div class="mb-3">
+                                        <label for="emailaddress1" class="form-label">Nama kategori</label>
+                                        <input class="form-control" type="text" id="emailaddress1"
+                                            placeholder="ex Kesehatan" name="name">
+                                    </div>
+
+                                    <div class="mb-3 text-center">
+                                        <button class="btn rounded-pill btn-primary" type="submit">Simpan</button>
+                                    </div>
+
+                                </form>
+
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+
+
             </div>
-            <h3>Petugas & Admin</h3>
+            <h3>Kategori</h3>
         </div>
         <div class="card-body">
             <div class="tab-content">
@@ -54,54 +88,37 @@
                             <tr>
                                 <th scope="col">No</th>
                                 <th scope="col">Nama</th>
-                                <th scope="col">Username</th>
-                                <th scope="col">No telp</th>
-                                <th scope="col">Level</th>
-                                <th scope="col">Opsi</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($petugas as $p)
+                            @foreach ($kategori as $p)
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
-                                <td>{{ $p->nama_petugas }}</td>
-                                <td>{{ $p->username }}</td>
-                                <td>{{ $p->telp }}</td>
+                                <td>{{ $p->name }}</td>
                                 <td>
-                                    @if ( $p->level == 'petugas')
-                                    <span class="badge badge-success-lighten rounded-pill">{{ $p->level }}</span>
-                                    @else
-                                    <span class="badge badge-danger-lighten rounded-pill">{{ $p->level }}</span>
-
-                                    @endif
-                                </td>
-                                <td>
-                                    <a class="btn btn-primary mb-3"
-                                        href="/admin/detailpetugas/{{ $p->id_petugas }}">Detail</a>
-                                    <a class="btn btn-warning mb-3"
-                                        href="/admin/editpetugas/{{ $p->id_petugas }}">Edit</a>
                                     <a class="btn btn-danger mb-3" data-bs-toggle="modal"
-                                        data-bs-target="#modalDelete{{ $p->id_petugas }}"
-                                        href="/admin/deletepetugas/{{ $p->id_petugas }}">Hapus</a>
+                                        data-bs-target="#modalDelete{{ $p->id }}"
+                                        href="/admin/kategori/{{ $p->id }}">Hapus</a>
 
                                     {{-- modal delete --}}
-                                    <div class="modal fade" id="modalDelete{{ $p->id_petugas }}" tabindex="-1"
+                                    <div class="modal fade" id="modalDelete{{ $p->id }}" tabindex="-1"
                                         role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Hapus Petugas</h5>
+                                                    <h5 class="modal-title" id="exampleModalLabel">Hapus Kategori</h5>
                                                     <button class="btn-close" type="button" data-bs-dismiss="modal"
                                                         aria-label="Close">
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p>Apakah anda yakin menghapus {{ $p->nama_petugas }} dengan level {{ $p->level }}</p>
+                                                    <p>Apakah anda yakin menghapus kategori {{ $p->name }} </p>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button class="btn btn-secondary" type="button"
                                                         data-bs-dismiss="modal">Batal</button>
-                                                    <form action="/admin/deletepetugas/{{ $p->id_petugas }}"
+                                                    <form action="/admin/kategori/{{ $p->id }}"
                                                         method="POST">
                                                         @csrf
                                                         @method('delete')

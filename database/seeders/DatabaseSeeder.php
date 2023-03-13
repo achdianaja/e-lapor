@@ -4,10 +4,13 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Categories;
 use App\Models\Petugas;
 use App\Models\Masyarakat;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,9 +21,22 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        
+        // Categories::create(['name' => 'Covid-19']);
+        $kategori = [
+            'Kesehatan',
+            'Ekonomi ',
+            'Ketenagakerjaan',
+            'Lainnya'
+        ];
+
+        foreach ($kategori as $key ) {
+            Categories::create([
+                'name'=> $key
+            ]);
+        }
+
         Petugas::create([
-            'nama_petugas' => 'Administrator',
+            'nama_petugas' => 'Admin',
             'username' => 'admin',
             'email' => 'admin@gmail.com',
             'password' => Hash::make('password'),
@@ -30,7 +46,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Petugas::create([
-            'nama_petugas' => 'Administrator',
+            'nama_petugas' => 'petugas1',
             'username' => 'petugas',
             'email' => 'petugas@gmail.com',
             'password' => Hash::make('password'),
@@ -40,9 +56,9 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Masyarakat::create([
-            'nik' => '32091031',
-            'username' => 'user2',
-            'nama' => 'aguss',
+            'nik' => '3209103132091031',
+            'username' => 'user1',
+            'nama' => 'user1',
             'alamat' => 'sukamukti',
             'email' => 'user1@gmail.com',
             'password' => Hash::make('123123123'),
@@ -51,9 +67,9 @@ class DatabaseSeeder extends Seeder
 
         ]);
         Masyarakat::create([
-            'nik' => '32091030',
-            'username' => 'user',
-            'nama' => 'abbot',
+            'nik' => '3209103032091030',
+            'username' => 'user2',
+            'nama' => 'user2',
             'alamat' => 'bojong',
             'email' => 'user2@gmail.com',
             'password' => Hash::make('123123123'),

@@ -105,6 +105,13 @@ class AdminController extends Controller
 
         return view('contents.admin.society.show',compact('society'));
     }
+
+    public function detailsociety($nik)
+    {
+        $masyarakat = Masyarakat::where('nik', $nik)->first();
+
+        return view('contents.admin.society.detail', compact('masyarakat'));
+    }
     
     public function editsociety($nik)
     {
@@ -135,6 +142,36 @@ class AdminController extends Controller
         ]);
 
         return redirect('/admin/masyarakat')->with('success','Data berhasil di update');
+    }
+    public function userdelete($nik){
 
+        $pengaduan_verif = Pengaduan::where('nik', $nik)->where('status', '!=', '0')->first();
+
+        if($pengaduan_verif){
+            return redirect()->back()->with('error', 'Masyarakat tidak dapat dihapus dikarenakan memiliki pengaduan yang sudah dikonfirmasi!');        
+        }else{
+
+            $user = Pengaduan::where('nik', $nik)->delete();
+            $user->delete();
+        }
+
+        return redirect('/admin/masyarakat')->with('pesan', 'berhasil menghapus data');
+    } 
+    public function trash(){
+        $society = Masyarakat::onlyTrashed()->get();
+        return view('contents.admin.society.trash', compact('society'));
+    }
+    public function restoreuser($nik)
+    {
+        $user = Masyarakat::onlyTrashed()->findOrFail($nik);
+        $user->restore();
+        return redirect('/admin/masyarakat')->with('pesan', 'Berhasil mengembalikan masyarakat.');
+    }
+    
+    public function forceuser($nik)
+    {
+        $user = Masyarakat::onlyTrashed()->findOrFail($nik);
+        $user->forceDelete();
+        return redirect('/admin/masyarakat/trash')->with('pesan', 'masyarakat berhasil dihapus secara permanen.');
     }
 }

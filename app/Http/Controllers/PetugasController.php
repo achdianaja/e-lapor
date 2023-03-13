@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categories;
 use App\Models\Images;
 use App\Models\Petugas;
 use App\Models\Pengaduan;
@@ -15,9 +16,16 @@ class PetugasController extends Controller
 {
     public function show()
     {
-        $petugas = Petugas::all();
+        $petugas = Petugas::where('id_petugas', '!=', Auth::guard('admin')->user()->id_petugas)->get();
 
         return view('contents.admin.petugasshow', compact('petugas'));
+    }
+
+    public function myAccount()
+    {
+        $petugas = Petugas::all()->first();
+        $tanggapan = Tanggapan::where('id_petugas', Auth::guard('admin')->user()->id_petugas)->count();
+        return view('contents.admin.myAccount', compact('petugas', 'tanggapan') );
     }
 
     public function createOrUpdate(Request $request)
@@ -117,13 +125,36 @@ class PetugasController extends Controller
         return redirect('/admin/petugas')->with('success','Data Petugas Berhasil Diubah');
     }
 
-    public function destroy($id_petugas)
+    public function delete($id_petugas)
     {
         $petugas = Petugas::findOrFail($id_petugas);
 
         $petugas->delete();
 
         return redirect('/admin/petugas')->with('success','Petugas berhasil dihapus');
+    }
+
+    public function restore($id_petugas)
+    {
+        $petugas = Petugas::onlyTrashed()->findOrFail($id_petugas);
+
+        $petugas->restore();
+        return redirect('/admin/petugas')->with('success', 'Berhasil dikembalika');
+
+    }
+
+    public function trash()
+    {
+        $petugas = Petugas::onlyTrashed()->get();
+
+        return view('contents.admin.trash', compact('petugas'));
+    }
+
+    public function forcepetugas($id_petugas)
+    {
+        $petugas = Petugas::onlyTrashed()->findOrFail($id_petugas);
+        $petugas->forceDelete();
+        return redirect('/admin/trash')->with('success', 'Berhasil dihapus secara permanen.');
     }
 
     public function detail($id_petugas)
@@ -148,5 +179,29 @@ class PetugasController extends Controller
         // $image = Images::where('id', $id)->first();
 
         return view('contents.admin.pengaduandetail',compact('pengaduan','tanggapan'));
+    }
+
+    public function kategori()
+    {
+        $kategori = Categories::orderBy('created_at', 'DESC')->get();
+        return view('contents.admin.kategori', compact('kategori'));
+    }
+
+    public function addkategori(Request $request)
+    {
+        Categories::create([
+            'name' => $request->name
+        ]);
+
+        return redirect()->back()->with('success', 'Berhasil di tambahkan');
+    }
+
+    public function kategoridelete($id)
+    {
+        $kategori = Categories::findOrFail($id);
+
+        $kategori->delete();
+
+        return redirect()->back()->with('success','Kategori berhasil dihapus');
     }
 }

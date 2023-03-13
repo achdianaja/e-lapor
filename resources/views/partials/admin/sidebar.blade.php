@@ -3,8 +3,8 @@
 
     <!-- Brand Logo Light -->
     <a href="index.html" class="logo logo-light">
-        <span class="logo-lg">
-            <img src="/assets/images/logo.png" alt="logo">
+        <span class="logo-lg py-3">
+            <h3 class="text-white" alt="dark logo"><span class="text-warning">E - </span>LAPOR</h3>
         </span>
         <span class="logo-sm">
             <img src="/assets/images/logo-sm.png" alt="small logo">
@@ -45,106 +45,66 @@
         <!--- Sidemenu -->
         <ul class="side-nav">
             @if(Auth::guard('admin')->user()->level == 'petugas')
-                <li class="side-nav-title">Apps</li>
+            <li class="side-nav-item">
+                <a href="{{ route('dashboard.index') }}" class="side-nav-link">
+                    <i class="uil-home-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+                <li class="side-nav-title">pengaduan</li>
                 
+
                 <li class="side-nav-item">
-                    <a href="apps-calendar.html" class="side-nav-link">
-                        <i class="uil-calender"></i>
-                        <span> kelola Pengaduan </span>
+                    <a href="{{ route('petugas.showLaporan') }}" class="side-nav-link">
+                        <i class="uil-comments-alt"></i>
+                        <span> Semua pengaduan </span>
                     </a>
                 </li>
-                
                 <li class="side-nav-item">
-                    <a href="#" class="side-nav-link">
-                        <i class="uil-comments-alt"></i>
-                        <span> Tanggapan </span>
+                    <a href="/admin/kategori" class="side-nav-link">
+                        <i class="uil-dialpad"></i>
+                        <span> Kelola kategori </span>
                     </a>
                 </li>
 
-                <li class="side-nav-item">
-                    <a data-bs-toggle="collapse" href="#sidebarEmail" aria-expanded="false" aria-controls="sidebarEmail" class="side-nav-link">
-                        <i class="uil-envelope"></i>
-                        <span> Kelola Pengaduan </span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <div class="collapse" id="sidebarEmail">
-                        <ul class="side-nav-second-level">
-                            <li>
-                                <a href="{{ route('petugas.showLaporan') }}">Lihat Laporan</a>
-                            </li>
-                            <li>
-                                <a href="crm-orders-list.html">Orders List</a>
-                            </li>
-                            <li>
-                                <a href="crm-clients.html">Clients</a>
-                            </li>
-                            <li>
-                                <a href="crm-management.html">Management</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
+
 
             @else
+            <li class="side-nav-item">
+                <a href="{{ route('dashboard.index') }}" class="side-nav-link">
+                    <i class="uil-home-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+
             <li class="side-nav-title">Pengguna</li>
 
             <li class="side-nav-item">
-                <a data-bs-toggle="collapse" href="#sidebarEmail" aria-expanded="false"
-                    aria-controls="sidebarEmail" class="side-nav-link">
-                    <i class="uil-envelope"></i>
-                    <span> Pengguna </span>
-                    <span class="menu-arrow"></span>
+                <a href="/admin/petugas" class="side-nav-link">
+                    <i class="uil-user"></i>
+                    <span> Petugas / Admin </span>
                 </a>
-                <div class="collapse" id="sidebarEmail">
-                    <ul class="side-nav-second-level">
-                        <li>
-                            <a href="/admin/petugas">Petugas</a>
-                        </li>
-                        <li>
-                            <a href="apps-email-read.html">Read Email</a>
-                        </li>
-                    </ul>
-                </div>
+            </li>
+            <li class="side-nav-item">
+                <a href="{{ route('admin.masyarakat') }}" class="side-nav-link">
+                    <i class="uil-users-alt"></i>
+                    <span> Masyarakat </span>
+                </a>
             </li>
 
-            <li class="side-nav-title">Apps</li>
-                
+            <li class="side-nav-title">Pengduan</li>
                 <li class="side-nav-item">
-                    <a href="apps-calendar.html" class="side-nav-link">
-                        <i class="uil-calender"></i>
-                        <span> kelola Pengaduan </span>
-                    </a>
-                </li>
-                
-                <li class="side-nav-item">
-                    <a href="#" class="side-nav-link">
+                    <a href="{{ route('petugas.showLaporan') }}" class="side-nav-link">
                         <i class="uil-comments-alt"></i>
-                        <span> Tanggapan </span>
+                        <span> Semua pengaduan </span>
                     </a>
                 </li>
 
                 <li class="side-nav-item">
-                    <a data-bs-toggle="collapse" href="#sidebarEmail" aria-expanded="false" aria-controls="sidebarEmail" class="side-nav-link">
-                        <i class="uil-envelope"></i>
-                        <span> Kelola Pengaduan </span>
-                        <span class="menu-arrow"></span>
+                    <a href="/admin/kategori" class="side-nav-link">
+                        <i class="uil-dialpad"></i>
+                        <span> Kelola kategori </span>
                     </a>
-                    <div class="collapse" id="sidebarEmail">
-                        <ul class="side-nav-second-level">
-                            <li>
-                                <a href="{{ route('petugas.showLaporan') }}">Lihat Laporan</a>
-                            </li>
-                            <li>
-                                <a href="crm-orders-list.html">Orders List</a>
-                            </li>
-                            <li>
-                                <a href="crm-clients.html">Clients</a>
-                            </li>
-                            <li>
-                                <a href="crm-management.html">Management</a>
-                            </li>
-                        </ul>
-                    </div>
                 </li>
             @endif
             <!-- end Help Box -->

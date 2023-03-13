@@ -21,7 +21,7 @@ class IsMasyarakat
             return $next($request);
         }
 
-        return redirect('/');
+        return redirect('/formlogin');
         
     }
 }

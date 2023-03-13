@@ -79,10 +79,10 @@
                                                         <div class="row">
                                                             <div class="col-12">
                                                                 <div class="mb-3">
-                                                                    <label for="emailaddress" class="form-label">Masukan Username</label>
+                                                                    <label for="emailaddress" class="form-label">Username, Email, atau No.telp</label>
                                                                     <input
                                                                         class="form-control  @error('username') is-invalid @enderror"
-                                                                        type="text" id="emailaddress" required=""
+                                                                        type="text" id="emailaddress"
                                                                         placeholder="Enter your email" name="inputan">
                                                                     @error('username')
                                                                     <div class="invalid-feedback">
@@ -94,8 +94,7 @@
 
                                                                 <div class="mb-3">
                                                                     <a href="pages-recoverpw.html"
-                                                                        class="text-muted float-end"><small>Forgot your
-                                                                            password?</small></a>
+                                                                        class="text-muted float-end"><small>Lupa password?</small></a>
                                                                     <label for="password"
                                                                         class="form-label">Password</label>
                                                                     <div class="input-group input-group-merge">
@@ -107,18 +106,12 @@
                                                                         <div class="invalid-feedback">
                                                                             {{ $message }}
                                                                         </div>
-
                                                                         @enderror
 
                                                                         <div class="input-group-text"
                                                                             data-password="false">
                                                                             <span class="password-eye"></span>
                                                                         </div>
-                                                                        {{-- @error('password')
-                                                                        <div class="invalid-feedback">
-                                                                            {{ $message }}
-                                                                        </div>
-                                                                        @enderror --}}
                                                                     </div>
                                                                 </div>
 
@@ -227,9 +220,13 @@
 
                             <div class="row mt-3">
                                 <div class="col-12 text-center">
-                                    <p class="text-muted">Don't have an account? <a href="/register"
-                                            class="text-muted ms-1"><b>Sign
-                                                Up</b></a></p>
+                                    <p class="text-muted">Belum punya akun?
+                                        <a type="button" href="/register" class="text-muted ms-1"
+                                    data-bs-toggle="tooltip" data-bs-placement="top"
+                                    data-bs-title="Register di khususkan untuk masyarakat bukan untuk petugas!">
+                                    <b> Register</b>
+                                </a>
+                                    </p>
                                 </div> <!-- end col -->
                             </div>
                             <!-- end row -->
