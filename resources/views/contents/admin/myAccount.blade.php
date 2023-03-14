@@ -35,9 +35,9 @@
 
                     <div class="col-sm-4">
                         <div class="text-center mt-sm-0 mt-3 text-sm-end">
-                            <button type="button" class="btn btn-light">
+                            <a href="/admin/editpetugas/{{ $petugas->id_petugas }}}" type="button" class="btn btn-light">
                                 <i class="mdi mdi-account-edit me-1"></i> Edit Profile
-                            </button>
+                            </a>
                         </div>
                     </div> <!-- end col-->
                 </div> <!-- end row -->

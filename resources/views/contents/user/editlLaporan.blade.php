@@ -64,6 +64,15 @@
                                     </div>
 
                                     <div class="mb-3">
+                                        <select name="id_categories" id="" class="form-control">
+                                            {{-- <option value="{{ $categories->id }}">{{ $categories->name }}</option> --}}
+                                            @foreach ($categories as $item)
+                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-3">
                                         <input type="file" name="images[]" accept="image/*" multiple
                                             class="form-control @error('images') is-invalid @enderror" id="image">
                                         <div class="row mt-2" id="image-preview-container" style="display:none;">

@@ -253,8 +253,10 @@ class UserController extends Controller
     {
         $judul_laporan = Pengaduan::where('judul_laporan', Auth::guard('masyarakat')->user()->judul_laporan);
         $pengaduan = Pengaduan::where('id_pengaduan', $id)->first();
+        $categories = Categories::all();
+
         $title = 'Home';      
-        return view('contents.user.editlLaporan', compact('pengaduan', 'title'));
+        return view('contents.user.editlLaporan', compact('pengaduan', 'title', 'categories'));
     }
 
     public function updatePengaduan(Request $request, $id)
@@ -267,6 +269,7 @@ class UserController extends Controller
             "images.*.max" => "Ukuran maksimal gambar 2MB",
             "image.mimes" => "Format gambar harus berupa jpg, png, jpeg atau gif",
             "image.max" => "Ukuran maksimal gambar 2MB",
+            "id_categories.required" => "kategori harus diisi"
         ];
         // dd($request->images);
         $request->validate([
@@ -275,10 +278,11 @@ class UserController extends Controller
             'tgl_pengaduan'   => 'required',
             'lokasi_kejadian' => 'required',
             // 'images'  => 'required',
+            'id_categories' => 'requred',
             'images.*' => 'mimes:jpg,jpeg,png,gif|max:20000'
         ], $cusMessage);
-        $id_pengaduan = Pengaduan::find($id);
 
+        $id_pengaduan = Pengaduan::find($id);
         if($request->hasFile('image')){
             $request->validate([
                 'image' => 'required|mimes:jpg,jpeg,png,gif|max:2048'
@@ -295,6 +299,7 @@ class UserController extends Controller
                 "lokasi_kejadian" => $request->lokasi_kejadian,
                 "hide_identitas"  => $request->hide_identitas ?? '1',
                 "hide_laporan"  => $request->hide_laporan ?? '1',
+                "id_categories" => $request->id_categories
                 // "status" => '0',
                 // "report_main_image" => $request->file('images')[0]->store('LaporanImages')
             ]);
@@ -315,7 +320,7 @@ class UserController extends Controller
                 Images::create([
                     "image_name" => $image->getClientOriginalName(),
                     "image_size" => $image->getSize(),
-                    "image_path" => $image->store('itemImages'),
+                    "image_path" => $image->store('LaporanImages'),
                     "id_pengaduan"    => $id_pengaduan->id_pengaduan
                 ]);
             }

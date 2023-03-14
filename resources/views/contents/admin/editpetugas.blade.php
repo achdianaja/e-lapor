@@ -1,5 +1,6 @@
 @extends('layouts.admin.master')
 
+@section('title', 'Edit Petugas')
 
 @section('adminContent')
     
